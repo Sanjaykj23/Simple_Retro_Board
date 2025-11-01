@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Retro Board (Sprint Retrospective Tool)</title>
+    <link rel="stylesheet" href="./style.css">
+
+</head>
+
+<body>
+    <div class="header">
+        <h1>🚀 Team Retro Board</h1>
+        <div id="details">
+            <p>Team : <span id="teamName">Innovators</span></p>
+            <p>Member <span id="userName"></span>Sanjay (<span id="userRole">Developer</span>)</p>
+        </div>
+        <div id="boardSelector">
+            <label for="boardDropdown">Curren Sprint: </label>
+            <select id="boardDropdown"></select>
+            <button id="newBoardBtn">➕ New Sprint</button>
+        </div>
+        <button id="logoutbtn">Logout</button>
+    </div>
+
+    <div class="board-container">
+        <div class="column" id="went-well">
+            <h2>What went well?</h2>
+            <ul id="went-well-list"></ul>
+            <input type="text" id="went-well-Input" placeholder="Add good point...">
+            <button onclick="note('went-well')">Add Note</button>
+        </div>
+
+        <div class="column" id="to-improve">
+            <h2>What need to improve??</h2>
+            <ul id="to-improve-list"></ul>
+            <input type="text" id="to-improve-Input" placeholder="Add improvement point...">
+            <button onclick="note('to-improve')">Add Note</button>
+        </div>
+
+        <div class="column" id="action-needed">
+            <h2>What action needed??</h2>
+            <ul id="action-needed-list"></ul>
+            <input type="text" id="action-needed-Input" placeholder="Add action needed point...">
+            <button onclick="note('action-needed')">Add Note</button>
+        </div>
+    </div>
+    <div class="btn"><button id="exportBtn">📦 Export Board Data</button></div>
+    
+</body>
+<script src="./script.js"></script>
+</html>

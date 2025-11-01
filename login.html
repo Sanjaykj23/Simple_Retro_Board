@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Simple Retro Board</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      height: 100vh;
+      background: radial-gradient(circle at top, #222 0%, #000 100%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Press Start 2P', cursive;
+      color: #00ffcc;
+    }
+
+    .login-box {
+      background: rgba(0, 0, 0, 0.6);
+      border: 2px solid #00ffcc;
+      border-radius: 12px;
+      padding: 40px 30px;
+      width: 360px;
+      box-shadow: 0 0 20px #00ffcc;
+      text-align: center;
+    }
+
+    .login-box h2 {
+      margin-bottom: 30px;
+      font-size: 16px;
+      text-shadow: 0. 0. 5px #00ffcc;
+    }
+
+    .login-box input {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 6px;
+      background: #111;
+      color: #00ffcc;
+      font-size: 12px;
+      outline: none;
+    }
+
+    .login-box input::placeholder {
+      color: #00ffcc;
+      opacity: 0.7;
+    }
+
+    .login-box button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 15px;
+      border: none;
+      border-radius: 6px;
+      background-color: #00ffcc;
+      color: #000;
+      font-weight: bold;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .login-box button:hover {
+      background-color: #77ca7b;
+    }
+
+    .login-box p {
+      margin-top: 20px;
+      font-size: 10px;
+    }
+
+    .login-box a {
+      color: #00ffcc;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="login-box" id="loginForm">
+    <h2>Simple Retro Board</h2>
+    <form>
+      <input type="text" placeholder="Username" required id="username"/>
+      <input type="password" placeholder="Password" required id="password"/>
+      <button type="submit">Login</button>
+    </form>
+    <p>No account? <a href="./register.html">Sign up</a></p>
+  </div>
+</body>
+<script>
+  document.getElementById("loginForm").addEventListener("submit", function(e) {
+  e.preventDefault();
+
+  const username = document.getElementById("username").value;
+  const password = document.getElementById("password").value;
+
+  const users = JSON.parse(localStorage.getItem("users")) || [];
+
+  const validUser = users.find(u => u.username === username && u.password === password);
+
+  if (validUser) {
+    localStorage.setItem("loggedInUser", JSON.stringify(validUser));
+    window.location.href = "index.html";
+  } else {
+    alert("Invalid credentials!");
+  }
+});
+
+</script>
+</html>

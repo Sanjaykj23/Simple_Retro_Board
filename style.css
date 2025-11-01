@@ -1,0 +1,118 @@
+*{
+    border:0px;
+    padding:0px;
+    box-sizing: border-box;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+body{
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position:fixed;
+    background-attachment: fixed;
+    margin: 0px;
+    height:100vh;
+    background-image: url('https://www.shutterstock.com/image-photo/abstract-blue-turquoise-gradient-background-600nw-2544284389.jpg');
+}
+
+.header{
+    display: flex;
+    padding: 10px 10px;
+    justify-content:space-between;
+    align-items: center;
+    background-color:#2563eb;
+    color: aliceblue;
+}
+#details{
+    margin: 0px;
+}
+#logoutbtn{
+    padding: 10px;
+    margin: 20px;
+    border-radius: 6px;
+}
+#logoutbtn:hover{
+    background-color: rgb(255, 255, 255);
+    color: red;
+}
+.board-container{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    padding: 18px;
+}
+.column{
+    width:30%;
+    min-width: 280px;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 10px;
+    transition: transform 0.2s;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    background-color: rgb(224, 227, 182);
+
+}
+#went-well{
+    background-color: #E6F4EA;
+}
+#to-improve{
+    background-color:#FFF4E5;
+
+}
+#action-needed{
+    background-color: #EAF4FF;
+}
+input{
+    padding: 10px;
+    border-radius: 5px;
+}
+.column:hover{
+    transform: scale(1.10);
+}
+.column button{
+  background: #2563eb;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 5px;
+  transition: transform 0.2s;
+}
+.column button:hover{
+    transform: scale(1.10);
+    background-color: brown;
+    color: antiquewhite;
+}
+.column h2 {
+  color: #2563eb;
+}
+#exportBtn{
+    display: block;
+    margin: 2opx;
+    background: #2563eb;
+  color: white;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+ul{
+    list-style:decimal;
+    padding: 0;
+}
+li{
+    padding:10px;
+    background: #e5e7eb;
+    margin: 8px auto;
+    border-radius: 6px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+li .meta {
+  font-size: 0.8em;
+  color: #555;
+}
+.btn{
+    display: flex;
+    justify-content: center;
+}
