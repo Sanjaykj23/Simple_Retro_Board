@@ -2,52 +2,70 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simple Retro Board (Sprint Retrospective Tool)</title>
-    <link rel="stylesheet" href="./style.css">
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🚀 Team Retro Board</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="./style.css">
 </head>
 
-<body>
-    <div class="header">
-        <h1>🚀 Team Retro Board</h1>
-        <div id="details">
-            <p>Team : <span id="teamName">Innovators</span></p>
-            <p>Member <span id="userName"></span>Sanjay (<span id="userRole">Developer</span>)</p>
-        </div>
-        <div id="boardSelector">
-            <label for="boardDropdown">Curren Sprint: </label>
-            <select id="boardDropdown"></select>
-            <button id="newBoardBtn">➕ New Sprint</button>
-        </div>
-        <button id="logoutbtn">Logout</button>
+<body class="min-h-screen flex flex-col">
+
+  <header class="header flex flex-wrap justify-between items-center">
+    <h1 class="text-2xl sm:text-3xl font-bold tracking-wide">🚀 Team Retro Board</h1>
+
+    <div id="details" class="text-sm sm:text-base text-white">
+      <p>Team: <span id="teamName" class="font-semibold">Innovators</span></p>
+      <p>Member: <span id="userName" class="font-semibold">Sanjay</span> (<span id="userRole"
+          class="italic">Developer</span>)</p>
     </div>
 
-    <div class="board-container">
-        <div class="column" id="went-well">
-            <h2>What went well?</h2>
-            <ul id="went-well-list"></ul>
-            <input type="text" id="went-well-Input" placeholder="Add good point...">
-            <button onclick="note('went-well')">Add Note</button>
-        </div>
-
-        <div class="column" id="to-improve">
-            <h2>What need to improve??</h2>
-            <ul id="to-improve-list"></ul>
-            <input type="text" id="to-improve-Input" placeholder="Add improvement point...">
-            <button onclick="note('to-improve')">Add Note</button>
-        </div>
-
-        <div class="column" id="action-needed">
-            <h2>What action needed??</h2>
-            <ul id="action-needed-list"></ul>
-            <input type="text" id="action-needed-Input" placeholder="Add action needed point...">
-            <button onclick="note('action-needed')">Add Note</button>
-        </div>
+    <div class="flex flex-col sm:flex-row gap-2 mt-2 sm:mt-0 items-center">
+      <input type="text" id="searchBox"
+        class="px-3 py-2 text-sm rounded-md border focus:outline-none focus:ring focus:ring-blue-300 text-gray-700"
+        placeholder="🔍 Search notes...">
+      <button id="logoutbtn"
+        class="bg-white text-blue-700 font-semibold hover:bg-red-600 hover:text-white transition-all">Logout</button>
     </div>
-    <div class="btn"><button id="exportBtn">📦 Export Board Data</button></div>
-    
+  </header>
+
+
+  <main class="board-container">
+    <div class="column shadow-sm hover:shadow-md transition">
+      <h2 class="text-lg font-semibold">✅ What went well?</h2>
+      <ul id="went-well-list"></ul>
+      <div class="flex flex-col sm:flex-row gap-2 mt-2">
+        <input type="text" id="went-well-Input" placeholder="Add good point..." class="flex-1 border px-2 py-1 rounded">
+        <button onclick="note('went-well')" class="hover:scale-105">Add Note</button>
+      </div>
+    </div>
+
+    <div class="column shadow-sm hover:shadow-md transition">
+      <h2 class="text-lg font-semibold">⚠️ What needs to improve?</h2>
+      <ul id="to-improve-list"></ul>
+      <div class="flex flex-col sm:flex-row gap-2 mt-2">
+        <input type="text" id="to-improve-Input" placeholder="Add improvement point..."
+          class="flex-1 border px-2 py-1 rounded">
+        <button onclick="note('to-improve')" class="hover:scale-105">Add Note</button>
+      </div>
+    </div>
+
+    <div class="column shadow-sm hover:shadow-md transition">
+      <h2 class="text-lg font-semibold">🛠️ What action needed?</h2>
+      <ul id="action-needed-list"></ul>
+      <div class="flex flex-col sm:flex-row gap-2 mt-2">
+        <input type="text" id="action-needed-Input" placeholder="Add action needed point..."
+          class="flex-1 border px-2 py-1 rounded">
+        <button onclick="note('action-needed')" class="hover:scale-105">Add Note</button>
+      </div>
+    </div>
+  </main>
+
+  <footer class="btn mt-6 mb-10">
+    <button id="exportBtn" class="hover:scale-105">📦 Export Board Data</button>
+  </footer>
+
+  <script src="./script.js"></script>
 </body>
-<script src="./script.js"></script>
+
 </html>
