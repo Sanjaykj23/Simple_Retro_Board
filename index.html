@@ -5,65 +5,139 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>🚀 Team Retro Board</title>
-  <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="./style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 
-<body class="min-h-screen flex flex-col">
+
+<body class="light">
+
+<div id="toast" class="toast hidden">
+    <p id="toastMessage"></p>
+</div>
+
+  <div id="loader" class="loader-screen">
+    <div class="spinner"></div>
+    <p>Loading your board...</p>
+</div>
 
   <header class="header flex flex-wrap justify-between items-center">
-    <h1 class="text-2xl sm:text-3xl font-bold tracking-wide">🚀 Team Retro Board</h1>
-
-    <div id="details" class="text-sm sm:text-base text-white">
+    <div class="left">
+      <h1>🚀 Team Retro Board</h1>
+      <div class="sub">
       <p>Team: <span id="teamName" class="font-semibold">Innovators</span></p>
       <p>Member: <span id="userName" class="font-semibold">Sanjay</span> (<span id="userRole"
           class="italic">Developer</span>)</p>
     </div>
+    </div>
 
-    <div class="flex flex-col sm:flex-row gap-2 mt-2 sm:mt-0 items-center">
-      <input type="text" id="searchBox"
-        class="px-3 py-2 text-sm rounded-md border focus:outline-none focus:ring focus:ring-blue-300 text-gray-700"
-        placeholder="🔍 Search notes...">
-      <button id="logoutbtn"
-        class="bg-white text-blue-700 font-semibold hover:bg-red-600 hover:text-white transition-all">Logout</button>
+
+    <div class="right">
+      <input id="searchBox" type="search" placeholder="Search notes..." aria-label="Search notes">
+      <select id="sortSelect">
+        <option value="">Sort (All columns)</option>
+        <option value="recent">Most recent</option>
+        <option value="az">A → Z</option>
+        <option value="za">Z → A</option>
+      </select>
+      <button id="themeToggle" title="Toggle theme">🌙</button>
+      <button id="dashboardBtn" title="Open dashboard">📊</button>
+      <button id="exportCsvBtn" title="Export CSV">CSV</button>
+      <button id="exportPdfBtn" title="Export PDF">PDF</button>
+      <button id="logoutbtn" title="Logout">Logout</button>
     </div>
   </header>
 
+  <div class="summary-pannel">
+    <div class="summary">
+      <div>✔ Went Well: <span id="sumWell">0</span></div>
+      <div>⚠ To Improve: <span id="sumImprove">0</span></div>
+      <div>🔥 Action Needed: <span id="sumAction">0</span></div>
+    </div>
+    <div class="chart-wrap">
+      <canvas id="retroChart" height="90"></canvas>
+    </div>
+  </div>
 
   <main class="board-container">
-    <div class="column shadow-sm hover:shadow-md transition">
-      <h2 class="text-lg font-semibold">✅ What went well?</h2>
-      <ul id="went-well-list"></ul>
-      <div class="flex flex-col sm:flex-row gap-2 mt-2">
-        <input type="text" id="went-well-Input" placeholder="Add good point..." class="flex-1 border px-2 py-1 rounded">
-        <button onclick="note('went-well')" class="hover:scale-105">Add Note</button>
+    <section class="column" id="went-well-col" data-key="went-well">
+      <h2>✅ What went well?</h2>
+      <ul id="went-well-list" class="notes-list"></ul>
+      <div class="input-row">
+        <input id="went-well-Input" placeholder="Add good point…" />
+        <button data-type="went-well" class="addBtn">Add</button>
       </div>
-    </div>
+    </section>
 
-    <div class="column shadow-sm hover:shadow-md transition">
-      <h2 class="text-lg font-semibold">⚠️ What needs to improve?</h2>
-      <ul id="to-improve-list"></ul>
-      <div class="flex flex-col sm:flex-row gap-2 mt-2">
-        <input type="text" id="to-improve-Input" placeholder="Add improvement point..."
-          class="flex-1 border px-2 py-1 rounded">
-        <button onclick="note('to-improve')" class="hover:scale-105">Add Note</button>
+    <section class="column" id="to-improve-col" data-key="to-improve">
+      <h2>⚠ What needs improvement?</h2>
+      <ul id="to-improve-list" class="notes-list"></ul>
+      <div class="input-row">
+        <input id="to-improve-Input" placeholder="Add improvement…" />
+        <button data-type="to-improve" class="addBtn">Add</button>
       </div>
-    </div>
+    </section>
 
-    <div class="column shadow-sm hover:shadow-md transition">
-      <h2 class="text-lg font-semibold">🛠️ What action needed?</h2>
-      <ul id="action-needed-list"></ul>
-      <div class="flex flex-col sm:flex-row gap-2 mt-2">
-        <input type="text" id="action-needed-Input" placeholder="Add action needed point..."
-          class="flex-1 border px-2 py-1 rounded">
-        <button onclick="note('action-needed')" class="hover:scale-105">Add Note</button>
+    <section class="column" id="action-needed-col" data-key="action-needed">
+      <h2>🛠 Action needed</h2>
+      <ul id="action-needed-list" class="notes-list"></ul>
+      <div class="input-row">
+        <input id="action-needed-Input" placeholder="Add action item…" />
+        <button data-type="action-needed" class="addBtn">Add</button>
       </div>
-    </div>
+    </section>
   </main>
 
-  <footer class="btn mt-6 mb-10">
-    <button id="exportBtn" class="hover:scale-105">📦 Export Board Data</button>
+  <footer class="footer">
+    <div class="footer-left">
+      <small>Press <kbd>Ctrl</kbd>+<kbd>1</kbd>/<kbd>2</kbd>/<kbd>3</kbd> to focus inputs. Press <kbd>d</kbd> to open dashboard.</small>
+    </div>
+     <div class="footer-right">
+      <button id="exportBtnSmall">Export JSON</button>
+    </div>
   </footer>
+
+<div id="editModal" class="modal hidden" role="dialog" aria-modal="true">
+    <div class="modal-content">
+      <h3>Edit note</h3>
+      <textarea id="editText" rows="3"></textarea>
+      <div class="modal-actions">
+        <button id="cancelEdit">Cancel</button>
+        <button id="saveEdit">Save</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="confirmModal" class="modal hidden" role="dialog" aria-modal="true">
+    <div class="modal-content">
+      <p id="confirmText">Are you sure?</p>
+      <div class="modal-actions">
+        <button id="cancelConfirm">Cancel</button>
+        <button id="okConfirm" class="danger">Delete</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="dashboardModal" class="modal hidden" role="dialog" aria-modal="true">
+    <div class="modal-content wide">
+      <h3>Dashboard</h3>
+      <div class="dashboard-grid">
+        <div class="card">
+          <h4>Counts</h4>
+          <p>Went Well: <strong id="dSumWell">0</strong></p>
+          <p>To Improve: <strong id="dSumImprove">0</strong></p>
+          <p>Action Needed: <strong id="dSumAction">0</strong></p>
+        </div>
+        <div class="card chart-card">
+          <canvas id="dashChart"></canvas>
+        </div>
+      </div>
+      <div class="modal-actions" style="justify-content:flex-end;margin-top:12px;">
+        <button onclick="closeDashboard()">Close</button>
+      </div>
+    </div>
+  </div>
 
   <script src="./script.js"></script>
 </body>
