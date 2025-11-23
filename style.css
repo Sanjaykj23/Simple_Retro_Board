@@ -35,7 +35,12 @@
     margin-top: 10px;
     color: #111;
 }
-
+.light{
+    background-image: url('./Bg_img_light.avif');
+    background-size: cover;
+    background-repeat: no-repeat;
+    min-height: 100%;
+}
 
 .header {
     display: flex;
@@ -229,7 +234,7 @@ button:hover {
     right: 18px;
     bottom: 18px;
     background: #111827;
-    color: #fff;
+    color:white;
     padding: 10px 14px;
     border-radius: 8px;
     box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
@@ -346,18 +351,21 @@ button:hover {
 .dark-mode {
     background-color: #121010;
     min-height: 100%;
-    background-image: url('./Bg_img.jpg');
+    background-image: url('./Bg_img2.jpg');
     background-size: cover;
-    background-position: center;
     background-repeat: no-repeat;
     color: rgb(224, 105, 32);
+    font-weight: 300;
 }
 
 .dark-mode input {
-    background: #8d9e68c2 !important;
-    color: #000000 !important;
+    background: #2e285ae9 !important;
+    color: #ffffff !important;
     border: 1px solid #1c78e8 !important;
     font-weight: 400;
+}
+.dark-mode input::placeholder{
+    color: #ffffff;
 }
 
 .dark-mode .summary {
@@ -376,3 +384,4 @@ button:hover {
 .note-actions button:hover {
   background: rgba(255,255,255,0.15);
 }
+
