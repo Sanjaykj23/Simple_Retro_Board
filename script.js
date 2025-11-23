@@ -337,7 +337,7 @@ document.addEventListener('keydown', e => {
   if (e.ctrlKey && e.key === '1') { $('went-well-Input').focus(); }
   if (e.ctrlKey && e.key === '2') { $('to-improve-Input').focus(); }
   if (e.ctrlKey && e.key === '3') { $('action-needed-Input').focus(); }
-  if (e.key === 'd') openDashboard();
+  if (e.key === '/') openDashboard();
 });
 
 function init() {

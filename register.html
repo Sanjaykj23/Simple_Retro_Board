@@ -11,42 +11,32 @@
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: 'Montserrat', sans-serif;
     }
 
     body {
       height: 100vh;
-      background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
-      background-size: 400% 400%;
-      animation: gradientBG 15s ease infinite;
+      background: #121212;
       display: flex;
       justify-content: center;
       align-items: center;
+      font-family: 'Montserrat', sans-serif;
+      color: #e0e0e0;
     }
 
-    @keyframes gradientBG {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
-    .register-glass {
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(20px);
-      border-radius: 20px;
+    .register-card {
+      background: #1e1e1e;
+      border-radius: 12px;
       padding: 40px;
-      width: 100%;
-      max-width: 450px;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-      color: #fff;
+      width: 420px;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.5);
     }
 
-    .register-glass h2 {
+    .register-card h2 {
       text-align: center;
       margin-bottom: 30px;
-      font-size: 28px;
+      font-size: 22px;
       font-weight: 600;
-      letter-spacing: 1px;
+      color: #00ffcc;
     }
 
     .form-group {
@@ -58,66 +48,69 @@
       margin-bottom: 8px;
       font-weight: 500;
       font-size: 14px;
+      color: #b0b0b0;
     }
 
     .form-group input {
       width: 100%;
       padding: 12px;
-      border: none;
-      border-radius: 10px;
-      background: rgba(255, 255, 255, 0.2);
+      border: 1px solid #333;
+      border-radius: 8px;
+      background: #2a2a2a;
       color: #fff;
       font-size: 14px;
-      transition: background 0.3s ease, box-shadow 0.3s ease;
-    }
-
-    .form-group input::placeholder {
-      color: #eee;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
     }
 
     .form-group input:focus {
-      background: rgba(255, 255, 255, 0.3);
-      box-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+      border-color: #00ffcc;
+      box-shadow: 0 0 6px rgba(0,255,204,0.6);
       outline: none;
     }
 
-    .register-glass button {
+    .form-group input::placeholder {
+      color: #888;
+    }
+
+    .register-card button {
       width: 100%;
-      padding: 12px;
-      background-color: #fff;
-      color: #333;
+      padding: 14px;
+      margin-top: 10px;
       border: none;
-      border-radius: 10px;
-      font-size: 16px;
+      border-radius: 8px;
+      background-color: #00ffcc;
+      color: #000;
       font-weight: 600;
+      font-size: 15px;
       cursor: pointer;
-      transition: background-color 0.3s ease;
+      transition: background 0.3s ease, transform 0.2s ease;
     }
 
-    .register-glass button:hover {
-      background-color: #f0f0f0;
+    .register-card button:hover {
+      background-color: #00d4aa;
+      transform: translateY(-2px);
     }
 
-    .register-glass p {
+    .register-card p {
       text-align: center;
       margin-top: 20px;
-      font-size: 14px;
+      font-size: 13px;
+      color: #aaa;
     }
 
-    .register-glass a {
-      color: #fff;
+    .register-card a {
+      color: #00ffcc;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .register-card a:hover {
       text-decoration: underline;
-    }
-
-    @media (max-width: 480px) {
-      .register-glass {
-        padding: 30px 20px;
-      }
     }
   </style>
 </head>
 <body>
-  <div class="register-glass">
+  <div class="register-card">
     <h2>Create Your Account</h2>
     <form id="registerForm">
       <div class="form-group">
@@ -133,7 +126,7 @@
         <input type="password" id="password" placeholder="Create a password" required />
       </div>
       <div class="form-group">
-        <label for="role">Role </label>
+        <label for="role">Role</label>
         <input type="text" id="role" placeholder="Enter your role" required />
       </div>
       <button type="submit">Register</button>

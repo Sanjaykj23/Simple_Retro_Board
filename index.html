@@ -6,6 +6,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>🚀 Team Retro Board</title>
   <link rel="stylesheet" href="./style.css">
+  <meta name="description" content="Team Retro Board - Agile Sprint Retrospective Tool">
+  <meta name="keywords" content="retro, agile, board, sprint retrospective">
+  <meta name="author" content="Team Thread Racers">
+  <meta name="theme-color" content="#2563eb">
+
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
@@ -13,23 +18,23 @@
 
 <body class="light">
 
-<div id="toast" class="toast hidden">
+  <div id="toast" class="toast hidden">
     <p id="toastMessage"></p>
-</div>
+  </div>
 
   <div id="loader" class="loader-screen">
     <div class="spinner"></div>
     <p>Loading your board...</p>
-</div>
+  </div>
 
   <header class="header flex flex-wrap justify-between items-center">
     <div class="left">
       <h1>🚀 Team Retro Board</h1>
       <div class="sub">
-      <p>Team: <span id="teamName" class="font-semibold">Innovators</span></p>
-      <p>Member: <span id="userName" class="font-semibold">Sanjay</span> (<span id="userRole"
-          class="italic">Developer</span>)</p>
-    </div>
+        <p>Team: <span id="teamName" class="font-semibold">Innovators</span></p>
+        <p>Member: <span id="userName" class="font-semibold">Sanjay</span> (<span id="userRole"
+            class="italic">Developer</span>)</p>
+      </div>
     </div>
 
 
@@ -91,14 +96,15 @@
 
   <footer class="footer">
     <div class="footer-left">
-      <small>Press <kbd>Ctrl</kbd>+<kbd>1</kbd>/<kbd>2</kbd>/<kbd>3</kbd> to focus inputs. Press <kbd>d</kbd> to open dashboard.</small>
+      <small>Press <kbd>Ctrl</kbd>+<kbd>1</kbd>/<kbd>2</kbd>/<kbd>3</kbd> to focus inputs. Press <kbd>"/"</kbd> to open
+        dashboard.</small>
     </div>
-     <div class="footer-right">
+    <div class="footer-right">
       <button id="exportBtnSmall">Export JSON</button>
     </div>
   </footer>
 
-<div id="editModal" class="modal hidden" role="dialog" aria-modal="true">
+  <div id="editModal" class="modal hidden" role="dialog" aria-modal="true">
     <div class="modal-content">
       <h3>Edit note</h3>
       <textarea id="editText" rows="3"></textarea>
